@@ -1,0 +1,10 @@
+<h1>Recipe Tracker</h1>
+<ul>
+  <%@recipes.each do |recipe|  %>
+    <li><%= recipe.name %></li>
+  <% end %>
+</ul>
+
+<a href="/recipes"><h3>View/Create Recipes:</h3></a>
+<a href="/ingredient"><h3>View/Create Ingredients:</h3></a>
+<a href="/tag"><h3>View/Create Tags:</h3></a>

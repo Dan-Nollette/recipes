@@ -1,0 +1,20 @@
+<h1>Ingredients</h1>
+
+<ul>
+  <%@ingredients.each do |ingredient|  %>
+    <li><%= ingredient.name %></li>
+  <% end %>
+</ul>
+
+<%if (@ingredients.length < 1)  %>
+  <p><%="There are no ingredients yet. :("%></p>
+<% end %>
+
+<form class="" action="/ingredient" method="post">
+  <h4>Add an ingredient</h4>
+  <div class="form-group">
+    <label for="name">Ingredient Name</label>
+    <input type="text" name="name" class="form-control">
+  </div>
+  <button type="submit" class="btn">Create Ingredient</button>
+</form>

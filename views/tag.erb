@@ -1,0 +1,20 @@
+<h1>Tags</h1>
+
+<ul>
+  <%@tags.each do |tag|  %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
+
+<%if (@tags.length < 1)  %>
+  <p><%="There are no tags yet. :("%></p>
+<% end %>
+
+<form class="" action="/tag" method="post">
+  <h4>Add a tag</h4>
+  <div class="form-group">
+    <label for="name">Tag Name</label>
+    <input type="text" name="name" class="form-control">
+  </div>
+  <button type="submit" class="btn">Create Tag</button>
+</form>
