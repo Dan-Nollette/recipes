@@ -1,4 +1,4 @@
 class Quantity < ActiveRecord::Base
-  has_many :recipe
-  has_many :ingredient
+  belongs_to :recipe
+  belongs_to :ingredient
 end

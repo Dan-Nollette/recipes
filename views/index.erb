@@ -1,10 +1,10 @@
-<h1>Recipe Tracker</h1>
+<h1>your recipe</h1>
 <ul>
   <%@recipes.each do |recipe|  %>
-    <li><%= recipe.name %></li>
+    <a href='/recipe/<%= recipe.id()%>'><li><%= recipe.name() %></li></a>
   <% end %>
 </ul>
 
-<a href="/recipes"><h3>View/Create Recipes:</h3></a>
+<a href="/recipes"><h3>Create Recipes:</h3></a>
 <a href="/ingredient"><h3>View/Create Ingredients:</h3></a>
 <a href="/tag"><h3>View/Create Tags:</h3></a>

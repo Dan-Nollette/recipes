@@ -29,12 +29,16 @@ post("/tag") do
   redirect "/tag"
 end
 
+get("/recipe/:id") do
+  @recipe = Recipe.find(params[:id])
+  @ingredients = @recipe.ingredients()
+  @tags = @recipe.tags()
+  erb(:recipe)
+end
+
 get("/recipes") do
   @recipes = Recipe.all
-  unless @recipes.any?
-    redirect "/recipes/new"
-  end
-  erb(:recipes)
+  redirect "/recipes/new"
 end
 
 get '/recipes/new' do
