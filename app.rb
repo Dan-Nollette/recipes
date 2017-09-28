@@ -72,3 +72,45 @@ post '/recipes/new' do
   @ingredients = Ingredient.all
   erb(:new_recipe)
 end
+
+get '/recipes/edit/:id' do
+  @allTags = Tag.all
+  @allIngredients = Ingredient.all
+  @recipe = Recipe.find(params[:id])
+  @recipeTags = @recipe.tags
+  @recipeIngredients = @recipe.ingredients
+  erb(:edit_recipe)
+end
+
+patch '/recipes/edit/:id' do
+  ingredients = []
+  tags = []
+  params.each do |param|
+    param_parts = param.first.split("_")
+    if param_parts[0] == "ingredients"
+      ingredients.push(param_parts[1].to_i)
+    end
+    if param_parts[0] == "tags"
+      tags.push(param_parts[1].to_i)
+    end
+  end
+  recipe = Recipe.find(params["id"])
+  recipe.update(name: params["Recipe_name"])
+  Ingredient.all.each do |ingredient|
+  recipe.update({ingredient_ids: ingredients, tag_ids: tags})
+  end
+  redirect "/"
+end
+
+delete '/recipes/edit/:id' do
+  recipe.update({ingredient_ids: [], tag_ids: []})
+  Recipe.find(params["id"]).destroy
+  redirect "/"
+end
+
+delete '/ingredients/delete/:id' do
+  ingredient = Ingredient.find(params["id"].to_i)
+  ingredient.update({recipe_ids: []})
+  ingredient.destroy
+  redirect "/ingredient"
+end

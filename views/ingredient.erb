@@ -2,7 +2,12 @@
 
 <ul>
   <%@ingredients.each do |ingredient|  %>
-    <li><%= ingredient.name %></li>
+    <li><%= ingredient.name %>
+      <form class="" action="/ingredients/delete/<%= ingredient.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn">Delete Ingredient</button>
+      </form> 
+    </li>
   <% end %>
 </ul>
 

@@ -1,6 +1,6 @@
 <h2><%= @recipe.name %> -
   <%@tags.each do |tag|%>
-    <a href="/tag/<%=tag.id()%>"><%=tag.name()%></a>&nbsp;
+    <a href="/tag/<%=tag.id()%>">#<%=tag.name()%></a>&nbsp;
   <% end %>
 </h2>
 <ul>
@@ -8,3 +8,6 @@
     <li><%= ingredient.name() %></li>
   <% end %>
 </ul>
+<a href="/recipes/edit/<%=@recipe.id%>">Edit this Recipe</a>
+<br>
+<br>

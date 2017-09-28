@@ -1,0 +1,23 @@
+<h2>Edit <%=@recipe.name%> Recipe</h2>
+<form class="" action="/recipes/edit/<%=@recipe.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="name">Recipe Name</label>
+    <input type="text" name="Recipe_name" class="form-control" value="<%=@recipe.name%>">
+    <br>
+    <h3>Ingredients</h3>
+    <% @allIngredients.each do |ingredient| %>
+      <input type="checkbox" name="ingredients_<%=ingredient.id%>" value="<%=ingredient.name%>"<%= @recipeIngredients.include?(ingredient) ? "checked" : "" %>><%=ingredient.name%><br>
+    <% end %>
+    <h3>Tags</h3>
+    <% @allTags.each do |tag| %>
+      <input type="checkbox" name="tags_<%=tag.id%>" value="<%=tag.name%>"<%= @recipeTags.include?(tag) ? "checked" : "" %>><%=tag.name%><br>
+    <% end %>
+  </div>
+  <button type="submit" class="btn">Edit Recipe</button>
+</form>
+
+<form class="" action="/recipes/edit/<%=@recipe.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn">Delete Recipe</button>
+</form>
