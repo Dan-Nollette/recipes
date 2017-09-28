@@ -5,7 +5,7 @@ require('pry')
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get("/") do
-  @recipes = Recipe.all
+  @recipes = Recipe.all.sort_by_rating()
   erb(:index)
 end
 
@@ -59,7 +59,7 @@ post '/recipes/new' do
       tags.push(param_parts[1].to_i)
     end
   end
-  recipe = Recipe.create(name: params["Recipe_name"])
+  recipe = Recipe.create(name: params["Recipe_name"], rating: params["rating"].to_i)
   ingredients.each do |ingredient_id|
     ingredient = Ingredient.find(ingredient_id)
     Quantity.create({ingredient_id: ingredient.id, recipe_id: recipe.id})
@@ -103,8 +103,9 @@ patch '/recipes/edit/:id' do
 end
 
 delete '/recipes/edit/:id' do
+  recipe = Recipe.find(params["id"])
   recipe.update({ingredient_ids: [], tag_ids: []})
-  Recipe.find(params["id"]).destroy
+  recipe.destroy
   redirect "/"
 end
 

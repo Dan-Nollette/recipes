@@ -5,6 +5,8 @@
     <label for="name">Recipe Name</label>
     <input type="text" name="Recipe_name" class="form-control" value="<%=@recipe.name%>">
     <br>
+    <label for="rating">Recipe Rating</label>
+    <input type="number" name="rating" value="<%=@recipe.rating.to_i%>" class="form-control">
     <h3>Ingredients</h3>
     <% @allIngredients.each do |ingredient| %>
       <input type="checkbox" name="ingredients_<%=ingredient.id%>" value="<%=ingredient.name%>"<%= @recipeIngredients.include?(ingredient) ? "checked" : "" %>><%=ingredient.name%><br>

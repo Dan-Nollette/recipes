@@ -1,6 +1,6 @@
 <h2><%= @recipe.name %> -
   <%@tags.each do |tag|%>
-    <a href="/tag/<%=tag.id()%>">#<%=tag.name()%></a>&nbsp;
+    <a href="/tag/<%=tag.id()%>">#<%=tag.name()%></a>&nbsp; <%=@recipe.rating.to_s%>
   <% end %>
 </h2>
 <ul>
