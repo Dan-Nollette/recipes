@@ -44,8 +44,26 @@ get '/recipes/new' do
 end
 
 post '/recipes/new' do
-  puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-  puts params
+  ingredients = []
+  tags = []
+  params.each do |param|
+    param_parts = param.first.split("_")
+    if param_parts[0] == "ingredients"
+      ingredients.push(param_parts[1].to_i)
+    end
+    if param_parts[0] == "tags"
+      tags.push(param_parts[1].to_i)
+    end
+  end
+  recipe = Recipe.create(name: params["Recipe_name"])
+  ingredients.each do |ingredient_id|
+    ingredient = Ingredient.find(ingredient_id)
+    Quantity.create({ingredient_id: ingredient.id, recipe_id: recipe.id})
+  end
+  tags.each do |tag_id|
+    tag = Tag.find(tag_id)
+    recipe.tags.push(tag)
+  end
   @tags = Tag.all
   @ingredients = Ingredient.all
   erb(:new_recipe)

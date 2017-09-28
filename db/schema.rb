@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927205115) do
+ActiveRecord::Schema.define(version: 20170928163607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20170927205115) do
   end
 
   create_table "recipes_tags", force: :cascade do |t|
-    t.integer "recipes_id"
-    t.integer "tags_id"
+    t.integer "recipe_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -7,11 +7,11 @@
     <br>
     <h3>Ingredients</h3>
     <% @ingredients.each do |ingredient| %>
-      <input type="checkbox" name="ingredients_<%=ingredient.name%>" value="<%=ingredient.name%>"><%=ingredient.name%><br>
+      <input type="checkbox" name="ingredients_<%=ingredient.id%>" value="<%=ingredient.name%>"><%=ingredient.name%><br>
     <% end %>
     <h3>Tags</h3>
     <% @tags.each do |tag| %>
-      <input type="checkbox" name="tags_<%=tag.name%>" value="<%=tag.name%>"><%=tag.name%><br>
+      <input type="checkbox" name="tags_<%=tag.id%>" value="<%=tag.name%>"><%=tag.name%><br>
     <% end %>
   </div>
   <button type="submit" class="btn">Create Recipe</button>
